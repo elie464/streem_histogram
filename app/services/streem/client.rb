@@ -6,7 +6,7 @@ module Streem
       @client = Elasticsearch::Client.new url: url
     end
 
-    def self.search(index, body)
+    def self.search(index:, body:)
       begin
         @client.search index: index, body: body
       rescue => e

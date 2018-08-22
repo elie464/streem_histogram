@@ -7,6 +7,7 @@ gem 'rails', '~> 5.2.1'
 gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'elasticsearch'
+gem 'dotenv'
 
 group :test do
   gem 'rspec-rails'

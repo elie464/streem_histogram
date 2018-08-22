@@ -1,1 +1,1 @@
-Streem::Client.configure('http://elastic:streem@test.es.streem.com.au:9200')
+Streem::Client.configure(ENV['STREEM_ELASTIC_SEARCH_URL'])

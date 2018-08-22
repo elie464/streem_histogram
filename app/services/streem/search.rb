@@ -1,7 +1,7 @@
 module Streem
   class Search
     def initialize(params)
-      @urls = params[:urls]
+      @urls = params[:page_url]
       @before = params[:before]
       @after = params[:after]
       @interval = params[:interval]

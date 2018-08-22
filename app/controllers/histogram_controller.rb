@@ -1,9 +1,9 @@
 class HistogramController < ApplicationController
   def query
-    Streem::Search.new(histogram_params).perform
+    render json: Streem::Search.new(histogram_params).perform
   end
 
   def histogram_params
-    params.permit(:before, :after, :interval, :urls => [])
+    params.permit(:before, :after, :interval, :page_url => [])
   end
 end
