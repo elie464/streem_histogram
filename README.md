@@ -1,24 +1,28 @@
-# README
+# Streem Histogram Service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the backend service for connecting to streem elasticsearch
 
-Things you may want to cover:
 
-* Ruby version
+## Setup
+Please use port 3001 when testing with Streem React
+```
+bundle exec rails s -p 3001
+```
 
-* System dependencies
+## API
 
-* Configuration
+### GET /histogram
 
-* Database creation
+**parameters:**
 
-* Database initialization
+* before - milliseconds (e.g. 1496275200000)
+* after - milliseconds (e.g. 1496304000000)
+* interval - string (e.g. 15m)
+* page_url - array (e.g. "http://www.smh.com.au/sport/tennis/an-open-letter-from-martina-navratilova-to-margaret-court-arena-20170601-gwhuyx.html")
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## Testing
 
-* Deployment instructions
-
-* ...
+```
+rspec
+```

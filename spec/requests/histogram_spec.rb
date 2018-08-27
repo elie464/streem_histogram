@@ -47,7 +47,8 @@ describe 'Histogram Query Request', type: :request do
                            status: 500,
                            response_body: "")
 
-        expect { get '/histogram', params: { hello: "hello" } }.to raise_error(Streem::Client::ElasticSearchError)
+        get '/histogram', params: { hello: "hello" }
+        expect(json_response['error']).to eq(I18n.t("errors.params"))
       end
     end
 
@@ -66,8 +67,8 @@ describe 'Histogram Query Request', type: :request do
                   {
                     "range" => {
                       "derived_tstamp" => {
-                        "from" => "2017-06-01T00:00:00.000Z",
-                        "to" => "2017-06-01T00:00:59.000Z"
+                        "from" => "1496275200000",
+                        "to" => "1496304000000"
                       }
                     }
                   }
@@ -121,11 +122,11 @@ describe 'Histogram Query Request', type: :request do
                         "buckets"=>[{"key"=>"http://www.news.com.au/travel/travel-updates/incidents/disruptive-passenger-grounds-flight-after-storming-cockpit/news-story/5949c1e9542df41fb89e6cdcdc16b615", "doc_count"=>327}]}}]}}}
 
         build_stub_request(path: "http://test.es.streem.com.au:9200/events/_search",
-                                    request_body: body.to_json,
-                                    status: 200,
-                                    response_body: expected_output.to_json)
+                           request_body: body.to_json,
+                           status: 200,
+                           response_body: expected_output.to_json)
 
-        get '/histogram', params: { before: '2017-06-01T00:00:00.000Z', after:'2017-06-01T00:00:59.000Z', interval: '15m', page_url: ['http://www.news.com.au/travel/travel-updates/incidents/disruptive-passenger-grounds-flight-after-storming-cockpit/news-story/5949c1e9542df41fb89e6cdcdc16b615'] }
+        get '/histogram', params: { before: '1496275200000', after:'1496304000000', interval: '15m', page_url: ['http://www.news.com.au/travel/travel-updates/incidents/disruptive-passenger-grounds-flight-after-storming-cockpit/news-story/5949c1e9542df41fb89e6cdcdc16b615'] }
         expect(json_response).to eq(expected_output)
       end
     end
